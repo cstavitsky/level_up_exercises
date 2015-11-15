@@ -1,5 +1,5 @@
 require 'csv'
-require_relative 'dinosaur'
+require_relative '../dino_catalog'
 
 class DinoCatalog::DinoImporter
 	attr_reader :dinosaur_list
@@ -15,20 +15,29 @@ class DinoCatalog::DinoImporter
 
 	private
 
+	def adapt_csv(adapter)
+		if adapter
+			p "Adapting CSV to proper format..."
+			#do something
+		end
+	end
+
 	def parse_csv(file)
-		CSV.parse(file) do |row|
-			add_to_list(convert_to_dinosaur(row))
+		CSV.foreach(file, headers: true) do |row|
+			p dinosaur = convert_to_dinosaur(row)
+			add_to_list(dinosaur)
 		end
 		dinosaur_list
 	end
 
 	def convert_to_dinosaur(row_data)
-		dinosaur = Dinosaur.new(
+		p row_data
+		dinosaur = DinoCatalog::Dinosaur.new(
 								name: row_data["NAME"],
 							  period: row_data["PERIOD"],
 						   continent: row_data["CONTINENT"],
 								diet: row_data["DIET"],
-					   weight_in_lbs: row_data["WEIGHT_IN_LBS"],
+					   weight_in_lbs: row_data["WEIGHT_IN_LBS"].to_i,
 								size: row_data["SIZE"],
 							 walking: row_data["WALKING"],
 						 description: row_data["DESCRIPTION"],
@@ -39,3 +48,6 @@ class DinoCatalog::DinoImporter
 		dinosaur_list << dinosaur
 	end
 end
+
+a = DinoCatalog::DinoImporter.new
+a.import_from_csv('../dinodex.csv')
