@@ -10,7 +10,11 @@ First, require the gem in whichever necessary files, or in IRB if you wish to pl
 
 Create a new DinoImporter, which takes your csv file and turns each row of data into a Dinosaur object.
 
-```dinosaur_collection = DinosaurCatalog::DinoImporter.new('yourfile.csv')```
+```
+dinosaur_collection = DinosaurCatalog::DinoImporter.new
+
+dinosaur_collection.import_from_csv('yourfile.csv')
+```
 
 Then, load the collection of Dinosaur objects that you've created into a new Dinodex.
 
@@ -44,6 +48,7 @@ You can also print the facts about a given Dinosaur. Let's say that we filter a 
 
 ```
 dinosaur = dinodex.filter_by_attribute("size","small").first #=> first Dinosaur in the returned collection
+
 dinosaur.print_facts #=> returns the Dinosaur object and prints its attributes, each on new lines.
 ```
 
