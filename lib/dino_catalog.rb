@@ -1,8 +1,7 @@
+require_relative 'dino_catalog/dino_importer'
+
 module DinoCatalog
 	class Dinosaur
-	end
-
-	class DinoParser
 	end
 
 	class Dinodex
