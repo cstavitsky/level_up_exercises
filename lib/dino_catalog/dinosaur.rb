@@ -1,4 +1,4 @@
-class Dinocatalog::Dinosaur
+class DinoCatalog::Dinosaur
 	def initialize(name:, period:, continent:, 
 				   diet:, weight_in_lbs:,
 				   size: nil, walking:, description:)
