@@ -22,7 +22,7 @@ Then, load the collection of Dinosaur objects that you've created into a new Din
 
 ##Dinodex methods
 
-You can use the Dinodex to filter by various paramters using the method 'filter_by_attribute'.
+You can use the Dinodex to filter by various parameters using the method 'filter_by_attribute'.
 
 ```
 dinodex.filter_by_attribute("walking", "biped") #=> collection of Dinosaurs with attribute walking equal to 'biped'
