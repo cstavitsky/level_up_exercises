@@ -8,22 +8,17 @@ class DinoCatalog::DinoImporter
 		@dinosaur_list = []
 	end
 
-	def import_from_csv(file, adapter = nil)
-		adapt_csv(adapter)
-		parse_csv(file)
+	def import_from_csv(file, format = nil)
+		parse_csv(file, format)
 	end
 
 	private
 
-	def adapt_csv(adapter)
-		if adapter
-			# p "Adapting CSV to proper format..."
-			#do something
-		end
-	end
-
-	def parse_csv(file)
+	def parse_csv(file, format = nil)
 		CSV.foreach(file, headers: true) do |row|
+			if format == "pirate_bay"
+				format_pirate_bay_data(row)
+			end
 			dinosaur = convert_to_dinosaur(row)
 			add_to_list(dinosaur)
 		end
@@ -41,6 +36,19 @@ class DinoCatalog::DinoImporter
 							 		 walking: row_data["WALKING"],
 						 	 description: row_data["DESCRIPTION"],
 			)
+	end
+
+	def format_pirate_bay_data(row_data)
+		row_data["NAME"] = row_data["Genus"]
+		row_data["PERIOD"] 	= row_data["Period"]
+		row_data["CONTINENT"] = "Africa"
+		row_data["WEIGHT_IN_LBS"] = row_data["Weight"]
+		row_data["WALKING"] = row_data["Walking"]
+		if row_data["Carnivore"] == "Yes"
+			row_data["DIET"] = "Carnivore"
+		else
+			row_data["DIET"] = "Herbivore"
+		end
 	end
 
 	def add_to_list(dinosaur)
