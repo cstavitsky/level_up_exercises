@@ -8,12 +8,14 @@ First, require the gem in whichever necessary files, or in IRB if you wish to pl
 
 ```require 'dino_catalog'```
 
-Create a new DinoImporter, which takes your csv file and turns each row of data into a Dinosaur object.
+Create a new DinoImporter, which takes your csv file and turns each row of data into a Dinosaur object. If you are importing with normal Dinodex format, you don't need to pass a format type---but if you downloaded Dino Data from the Pirate Bay, then you should pass in the optional argument "pirate_bay" as shown in the example below
 
 ```
 dinosaur_collection = DinoCatalog::DinoImporter.new
 
-dinosaur_collection.import_from_csv('yourfile.csv')
+dinosaur_collection.import_from_csv('yourfile.csv') #Importing from a csv in normal Dinodex format
+
+dinosaur_collection.import_from_csv('piratebayfile.csv', "pirate_bay") #Importing from a csv of dino data downloaded from the Pirate Bay
 ```
 
 Then, load the collection of Dinosaur objects that you've created into a new Dinodex. Use the dinosaur_list method to access the collection of Dinosaurs now held inside the DinoImporter you made.
