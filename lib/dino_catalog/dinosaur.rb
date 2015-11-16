@@ -23,6 +23,10 @@ class DinoCatalog::Dinosaur
 	end
 
 	def print_facts
+		puts format_facts
+	end
+
+	def format_facts
 		attributes_with_values = ATTRIBUTES.select do |attribute|
 			send(attribute)
 		end

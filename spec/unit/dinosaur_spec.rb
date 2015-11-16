@@ -6,9 +6,9 @@ describe DinoCatalog::Dinosaur do
 		@dinosaur = DinoCatalog::Dinosaur.new(name: "trex", walking: "biped")
   end
   
-	describe '#print_facts' do
+	describe '#format_facts' do
 		it 'omits attribute headers without values' do
-			expect(@dinosaur.print_facts).to eq("name: trex\nwalking: biped")
+			expect(@dinosaur.format_facts).to eq("name: trex\nwalking: biped")
 		end
 	end
 end
