@@ -36,6 +36,14 @@ class DinoCatalog::Dinosaur
 		end.join("\n")
 	end
 
+	def to_json
+		json_hash = {}
+		self.instance_variables.each do |variable|
+			json_hash[variable] = self.instance_variable_get(variable)	
+		end
+		json_hash
+	end
+
 	private
 
 	def calculated_size(weight_in_lbs)

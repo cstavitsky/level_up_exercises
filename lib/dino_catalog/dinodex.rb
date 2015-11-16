@@ -26,12 +26,17 @@ class DinoCatalog::Dinodex
 				val_of_attribute.downcase == value.downcase
 			end
 		end
-		# .downcase == value.downcase 
 	end
 
 	def print_collection(dino_collection)
 		dino_collection.each do |dinosaur|
 			puts dinosaur.print_facts
+		end
+	end
+
+	def export_json
+		@dinosaurs.map do |dinosaur|
+			dinosaur.to_json
 		end
 	end
 end
