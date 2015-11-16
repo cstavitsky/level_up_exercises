@@ -1,5 +1,5 @@
 class DinoCatalog::Dinosaur
-	ATTRIBUTES = [:name, :description, :walking, :diet, :period, :weight_in_lbs, :continent]
+	ATTRIBUTES = [:name, :description, :walking, :diet, :period, :weight_in_lbs, :continent, :size]
   attr_reader *ATTRIBUTES
 
 	def initialize(
@@ -37,8 +37,10 @@ class DinoCatalog::Dinosaur
 	def calculated_size(weight_in_lbs)
 		if weight_in_lbs >= 2000
 			"big"
-		else
+		elsif weight_in_lbs > 0
 			"small"
+		else
+			nil
 		end
 	end
 end
