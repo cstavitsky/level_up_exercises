@@ -5,7 +5,7 @@ describe 'DinoCatalog::DinoImporter' do
 
 	before :each do
 		@dino_collection = DinoCatalog::DinoImporter.new
-		@imported_dinosaurs = @dino_collection.import_from_csv('../../lib/dinodex.csv')
+		@imported_dinosaurs = @dino_collection.import_from_csv('lib/dinodex.csv')
 	end
 
 	describe '#import_from_csv' do
