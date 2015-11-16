@@ -7,8 +7,25 @@ class DinoCatalog::Dinodex
 		@dinosaurs = dinosaurs
 	end
 
+	def carnivores
+		dinosaurs.select do |dinosaur|
+			dinosaur.diet.downcase == "carnivore" ||
+			dinosaur.diet.downcase == "piscivore" ||
+			dinosaur.diet.downcase == "insectivore" 
+		end
+	end
+
+	def bipeds
+		filter_by_attribute("walking", "biped")
+	end
+
 	def filter_by_attribute(attribute, value)
-		dinosaurs.select{ |dinosaur| dinosaur.send(attribute).downcase == value.downcase}
+		dinosaurs.select do |dinosaur|
+			val_of_attribute = dinosaur.send(attribute)
+			if !val_of_attribute.nil?
+				val_of_attribute.downcase == value.downcase
+			end
+		end
 		# .downcase == value.downcase 
 	end
 end
