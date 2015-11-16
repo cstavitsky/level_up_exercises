@@ -28,4 +28,10 @@ class DinoCatalog::Dinodex
 		end
 		# .downcase == value.downcase 
 	end
+
+	def print_collection(dino_collection)
+		dino_collection.each do |dinosaur|
+			puts dinosaur.print_facts
+		end
+	end
 end
