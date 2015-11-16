@@ -34,8 +34,8 @@ class DinoCatalog::Dinodex
 		end
 	end
 
-	def export_json
-		@dinosaurs.map do |dinosaur|
+	def export_json(dino_collection)
+		dino_collection.map do |dinosaur|
 			dinosaur.to_json
 		end
 	end

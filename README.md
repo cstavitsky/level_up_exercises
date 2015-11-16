@@ -42,8 +42,15 @@ dinodex.filter_by_attribute("size", "small") #=> collection of Dinosaurs weighin
 You can also chain filter calls together. For instance,
 
 ```
-dinodex.filter_by_attribute("size","small").filter_by_attribute("diet", "carnivore") #=> collection of Dinosaurs that weigh less than 2000 lbs and are carnivores.
+dinodex.filter_by_attribute("size","small").filter_by_attribute("diet", "carnivore") #=> collection of Dinosaurs that weigh less than 2000 lbs AND are also carnivores.
 ```
+
+To export your dinosaur data as JSON:
+```
+small_dinos = dinodex.filter_by_attribute("size","big")
+dinodex.export_json(small_dinos)
+```
+
 ##Dinosaur methods
 
 You can also print the facts about a given Dinosaur. Let's say that we filter a number of dinosaurs by size using the Dinodex we instantiated earlier.
