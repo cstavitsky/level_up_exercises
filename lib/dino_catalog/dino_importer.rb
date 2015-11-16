@@ -17,21 +17,20 @@ class DinoCatalog::DinoImporter
 
 	def adapt_csv(adapter)
 		if adapter
-			p "Adapting CSV to proper format..."
+			# p "Adapting CSV to proper format..."
 			#do something
 		end
 	end
 
 	def parse_csv(file)
 		CSV.foreach(file, headers: true) do |row|
-			p dinosaur = convert_to_dinosaur(row)
+			dinosaur = convert_to_dinosaur(row)
 			add_to_list(dinosaur)
 		end
 		dinosaur_list
 	end
 
 	def convert_to_dinosaur(row_data)
-		p row_data
 		dinosaur = DinoCatalog::Dinosaur.new(
 								name: row_data["NAME"],
 							  period: row_data["PERIOD"],
@@ -50,4 +49,4 @@ class DinoCatalog::DinoImporter
 end
 
 a = DinoCatalog::DinoImporter.new
-a.import_from_csv('../dinodex.csv')
+# a.import_from_csv('../dinodex.csv')

@@ -1,4 +1,7 @@
 class DinoCatalog::Dinosaur
+	ATTRIBUTES = [:name, :description, :walking, :diet, :period, :weight_in_lbs, :continent]
+  attr_reader *ATTRIBUTES
+  
 	def initialize(name:, period:, continent:, 
 				   diet:, weight_in_lbs:,
 				   size: nil, walking:, description:)

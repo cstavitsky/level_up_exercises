@@ -1,3 +1,5 @@
+require_relative '../dino_catalog'
+
 class DinoCatalog::Dinodex
 	attr_reader :dinosaurs
 
@@ -6,6 +8,7 @@ class DinoCatalog::Dinodex
 	end
 
 	def filter_by_attribute(attribute, value)
-		dinosaurs.select{ |dinosaur| dinosaur.attribute.downcase == value.downcase }
+		dinosaurs.select{ |dinosaur| dinosaur.send(attribute).downcase == value.downcase}
+		# .downcase == value.downcase 
 	end
 end
