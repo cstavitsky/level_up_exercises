@@ -1,4 +1,3 @@
-require 'csv'
 require_relative '../dino_catalog'
 
 class DinoCatalog::DinoImporter

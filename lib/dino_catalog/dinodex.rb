@@ -28,15 +28,9 @@ class DinoCatalog::Dinodex
 		end
 	end
 
-	def print_collection(dino_collection)
+	def print_collection(dino_collection = dinosaurs)
 		dino_collection.each do |dinosaur|
 			puts dinosaur.print_facts
-		end
-	end
-
-	def export_json(dino_collection)
-		dino_collection.map do |dinosaur|
-			dinosaur.to_json
 		end
 	end
 end

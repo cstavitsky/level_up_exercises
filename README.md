@@ -45,10 +45,16 @@ You can also chain filter calls together. For instance,
 dinodex.filter_by_attribute("size","small").filter_by_attribute("diet", "carnivore") #=> collection of Dinosaurs that weigh less than 2000 lbs AND are also carnivores.
 ```
 
+To print data about a collection of dinosaurs (whether all the 'saurs in your Dinodex, or just some that have been filtered):
+```
+quadrupeds = dinodex.filter_by_attribute("walking","quadruped")
+dinodex.print_collection(quadrupeds) #prints a formatted list of quadruped Dinosaurs.
+```
+
 To export your dinosaur data as JSON:
 ```
 small_dinos = dinodex.filter_by_attribute("size","big")
-dinodex.export_json(small_dinos)
+JsonMaker.export_json(small_dinos)
 ```
 
 ##Dinosaur methods

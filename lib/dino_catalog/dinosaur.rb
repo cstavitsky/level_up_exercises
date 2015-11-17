@@ -23,10 +23,20 @@ class DinoCatalog::Dinosaur
 	end
 
 	def print_facts
-		puts format_facts
+		puts formatted_facts
 	end
 
-	def format_facts
+	# def to_json
+	# 	json_hash = {}
+	# 	self.instance_variables.each do |variable|
+	# 		json_hash[variable] = self.instance_variable_get(variable)	
+	# 	end
+	# 	json_hash
+	# end
+
+	private
+
+	def formatted_facts
 		attributes_with_values = ATTRIBUTES.select do |attribute|
 			send(attribute)
 		end
@@ -35,16 +45,6 @@ class DinoCatalog::Dinosaur
 			"#{attribute}: #{send(attribute)}"
 		end.join("\n")
 	end
-
-	def to_json
-		json_hash = {}
-		self.instance_variables.each do |variable|
-			json_hash[variable] = self.instance_variable_get(variable)	
-		end
-		json_hash
-	end
-
-	private
 
 	def calculated_size(weight_in_lbs)
 		if weight_in_lbs >= 2000
