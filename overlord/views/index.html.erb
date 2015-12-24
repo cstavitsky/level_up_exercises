@@ -2,13 +2,8 @@
 
 Mwahahaha!  
 
-<% if @bomb && @bomb.state == :active %>
-	The bomb is active.
-	<a href="/active_bomb">Disarm</a>
-<% else %>
-	<form action="/" method="POST">
+<form action="/initialize" method="POST">
 	Enter an activation code: <input id='bomb-activation-code' name='actcode'><br>
 	Deactivation code: Enter an activation code: <input id='bomb-deactivation-code' name='deactcode'><br>
-	<input type="submit" id='activate' value="Activate!!!">
-	</form>
-<% end %>
+	<input type="submit" id='initialize' value="Initialize">
+</form>
