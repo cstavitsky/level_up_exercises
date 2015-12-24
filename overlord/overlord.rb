@@ -55,6 +55,7 @@ class Overlord < Sinatra::Base
 		@bomb = session[:bomb]
 		@bomb.enter_code(params["deactcode"])
 		if @bomb.state == :inactive
+			session[:deactivation_attempts] = 0
 			redirect '/'
 		else
 			session[:deactivation_attempts] += 1
