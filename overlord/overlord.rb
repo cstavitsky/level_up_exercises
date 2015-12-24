@@ -25,10 +25,8 @@ class Overlord < Sinatra::Base
 	#show view for state.
 	get '/' do
 		@bomb = session[:bomb]
-		if @bomb && more_deactivation_attempts?(@bomb)
+		if @bomb
 	  	erb @bomb.state
-	  elsif @bomb && !more_deactivation_attempts?(@bomb)
-	  	@bomb.explode
 	  else
 	  	erb :index
 	  end
