@@ -12,7 +12,7 @@ This test plan is for a typical e-commerce shopping cart. They are written in ro
 - Pay attention to cases such as logging in (if I have items in my cart as an anonymous user, but also have cart items from a previous authenticated session), or adding another item of the same SKU as others in my cart.
 - Don't worry about product pages or checkout.
 
-#[feature] Adjust quantities on items in my cart
+#[feature] Adjust quantities on items in my cart or delete them
 
 (happy path)
 Scenario: Delete item from cart on shopping cart page
@@ -26,6 +26,7 @@ Scenario: Change item quantity in cart on shopping cart page
 	Given that I have 1 Broomstick in my cart
 	And I visit the shopping cart page
 	When I fill in the item quantity for the first item with "3"
+	And I click the "update quantity" link
 	Then I should have 3 Broomsticks in my cart
 
 (happy path)
@@ -33,6 +34,7 @@ Scenario: Updating item quantity in cart on shopping cart page doesn't affect ot
 	Given that I have 1 Broomstick and 1 Wand in my cart
 	And I visit the shopping cart page
 	When I fill in the item quantity for the first item with "3"
+	And I click the "update quantity" link
 	Then I should have 3 Broomsticks and 1 Wand in my cart
 
 (happy path)
@@ -40,7 +42,26 @@ Scenario: Change item quantity in cart on shopping cart page to 0, deleting it f
 	Given that I have 1 Broomstick in my cart
 	And I visit the shopping cart page
 	When I fill in the item quantity for the first item with "0"
+	And I click the "update quantity" link
 	Then I should have 0 items in my cart
+
+(sad path)
+Scenario: Change item quantity in cart to an integer over 99
+	Given that I have 1 Broomstick in my cart
+	And I visit the shopping cart page
+	When I fill in the item quantity for the first item with "9001"
+	And I click the "update quantity" link
+	Then I should see "You can order up to 99 of each item type"
+	And I should have 99 Broomsticks in my cart
+
+(bad path)
+Scenario: Change item quantity in cart to a non-integer
+	Given that I have 1 Broomstick in my cart
+	And I visit the shopping cart page
+	When I fill in the item quantity for the first item with "ABCD"
+	And I click the "update quantity" link
+	Then I should see "That's not a valid entry"
+	And I should have 1 Broomstick in my cart
 
 #[feature] Visit item pages from cart
 
@@ -78,11 +99,21 @@ Scenario: User enters a nonexistent shipping address
 	When I click the "Estimate shipping" link
 	Then I should see "That's not a valid address according to our system"
 
+(sad path)
+Scenario: User enters an address but no city (extrapolate to the other fields in form)
+	Given that I have 1 Broomstick in my cart
+	And I visit the shopping cart page
+	And I fill in the shipping address form with "175"
+	And I fill in the shipping street form with "W Jackson Blvd"
+	And I fill in the shipping city form with "Chicago"
+	When I click the "Estimate shipping" link
+	Then I should see "Please fill out all required forms"
+
 (bad path)
 Scenario: User enters an invalid shipping address
 	Given that I have 1 Broomstick in my cart
 	And I visit the shopping cart page
-	And I fill in the shipping information form with "1178728179287sdfklj331"
+	And I fill in the shipping address form with "1178728179287sdfklj331"
 	When I click the "Estimate shipping" link
 	Then I should see "Please enter an address with City, State and Zip
 
